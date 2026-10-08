@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Test / coverage artifacts
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.ruff_cache/
+.mypy_cache/
+
+# Data caches / model artifacts
+data_cache/
+*.npz
+*.npy
+*.pkl
+*.pickle
+checkpoints/
+weights/
+results/
+logs/
+*.log
+
+# Benchmark outputs are committed on purpose only via examples; ignore ad-hoc runs
+examples/**/benchmark_*.json
+
+# Secrets -- never commit credentials
+.env
+.env.*
+*.pem
+*.key
+secrets/
+credentials.json
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

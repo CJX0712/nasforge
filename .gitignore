@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Tooling / editors
+.gradle/
+.env
+*.so
+.DS_Store
+Thumbs.db
+
+# Scratch
+_gradcheck.py
+*.log

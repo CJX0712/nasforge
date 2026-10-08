@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nasforge"
+version = "0.1.0"
+description = "NasForge - world-class Neural Architecture Search system (DARTS 2nd-order + GRL + one-shot weight inheritance + zero-cost proxy)"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "晨星", email = "CJX0712@users.noreply.github.com" }]
+keywords = [
+    "neural-architecture-search",
+    "darts",
+    "automl",
+    "deep-learning",
+    "numpy",
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "numpy>=2.5.3,<3.0",
+    "scipy>=1.18.1,<2.0",
+    "scikit-learn>=1.9.1,<2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=9.0", "pytest-cov>=7.0", "ruff==0.16.10"]
+
+[project.urls]
+Homepage = "https://github.com/CJX0712/nasforge"
+Repository = "https://github.com/CJX0712/nasforge"
+
+[project.scripts]
+nasforge = "nasforge.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["nasforge*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::UserWarning", "ignore::RuntimeWarning"]
+
+[tool.coverage.run]
+branch = true
+source = ["nasforge"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E", "W", "F", "I", "N", "UP", "B", "A", "C4", "SIM",
+    "RET", "ARG", "PTH", "TID", "RUF", "PL",
+]
+ignore = [
+    # Complexity / argument-count rules are noisy for a numeric library where
+    # functions naturally take many typed tensors/arrays.
+    "PLR0913", "PLR0912", "PLR0911", "PLR0915", "PLR0914", "PLR0917", "PLR2004",
+    # Long lines are common in tensor-shape arithmetic; kept readable over short.
+    "E501",
+    # Math notation (alpha, nabla, dot, Sigma) in docstrings is intentional.
+    "RUF002", "RUF022",
+    # Lazy imports inside functions avoid import cycles and keep torch out.
+    "PLC0415",
+    # Uniform operator VJP signatures deliberately carry unused args (del'd).
+    "ARG001",
+    # Examples use os.path; pathlib-only is not worth the churn here.
+    "PTH",
+    # Numeric helpers legitimately use single-letter locals (B, C, W, ...).
+    "N806", "B905", "B007", "SIM108", "E402",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["PLR2004", "PLR0913", "PLR0915", "ARG001", "ARG002", "S101"]
+"examples/*" = ["PLR2004", "PLR0913"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["nasforge"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
