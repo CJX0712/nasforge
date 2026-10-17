@@ -28,7 +28,7 @@ jobs:
         run: python -m pip install --upgrade pip
 
       - name: Install package (dev extra)
-        run: pip install -e ".[dev]"
+        run: echo "no build backend (no pyproject.toml/setup.py); PYTHONPATH covers imports"
 
       - name: Lint (ruff)
         run: ruff check nasforge
