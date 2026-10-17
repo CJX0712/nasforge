@@ -9,7 +9,6 @@ on:
 env:
   PYTHONPATH: ${{ github.workspace }}
 
-
 jobs:
   ci:
     runs-on: ubuntu-latest
