@@ -6,7 +6,10 @@ on:
   pull_request:
     branches: [main]
 
-jobs:
+env:
+  PYTHONPATH: ${{ github.workspace }}
+
+
   ci:
     runs-on: ubuntu-latest
     steps:
